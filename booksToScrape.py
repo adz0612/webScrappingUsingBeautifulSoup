@@ -5,8 +5,13 @@ url = "http://books.toscrape.com/"
 def scrapeBooks(url,count=1,urlNum=1):
     bookInfo = requests.get(url)
     soup2 = BeautifulSoup(bookInfo.content)
-    anotherSoup = soup2.findAll("li",attrs={"class", "col-xs-6 col-sm-4 col-md-3 col-lg-3"})
+    anotherSoup = soup2.findAll("li",attrs={"class", "col-xs-6 col-sm-4 col-md-3 col-lg-3"})        
     for i in range(len(anotherSoup)):
+        with open ("Scraped.txt",'a') as f:
+                f.write(str(count)+')'+ 'Title: '+  anotherSoup[i].h3.a['title']+'\n')
+                f.write( 'Price:'+anotherSoup[i].find('p',attrs='price_color').text+'\n\n')
+                
+                
         print(count,')', 'Title: ',  anotherSoup[i].h3.a['title'])
         print('    Price:',anotherSoup[i].find('p',attrs='price_color').text)
         print()
