@@ -1,8 +1,8 @@
 url = "http://books.toscrape.com/"
 
-
+# Change scrapeBook to scrapeBooks
     
-def scrapeBooks(url,count=1,urlNum=1):
+def scrapeBook(url,count=1,urlNum=1):
     bookInfo = requests.get(url)
     soup2 = BeautifulSoup(bookInfo.content)
     anotherSoup = soup2.findAll("li",attrs={"class", "col-xs-6 col-sm-4 col-md-3 col-lg-3"})        
